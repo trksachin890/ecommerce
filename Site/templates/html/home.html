@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% comment %} css join gareko  {% endcomment %}
+{% comment %} <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"> {% endcomment %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+    <div class="row">
+         
+        {% for product in products %}
+            <div class="col-lg-4">
+                <div class="box-element product">
+                    <img class="thumbnail" src="{{product.imageURL}}" style="max-width: 100%; height: auto;">
+                    <h6><strong>{{ product.name }}</strong></h6>
+                    <hr>
+                    <a href="cart/{{product.id}}">
+                        <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+                    </a>
+                    <a class="btn btn-outline-success" href="#">View</a>
+                    <h4 style="display: inline-block; float: right"><strong>{{ product.price|floatformat:2 }}</strong></h4>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
